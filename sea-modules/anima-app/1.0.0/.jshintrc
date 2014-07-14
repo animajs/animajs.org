@@ -1,0 +1,54 @@
+{
+  // 变量必须在使用前已经声明好
+  "latedef": "nofunc",
+  "undef": true,
+  "unused": true,
+
+  // 新建一个类的实例，必须使用 `new`，侧面保证类名是大驼峰
+  "newcap": true,
+
+  // 缩进禁止空格和制表符混搭
+  "smarttabs": true,
+
+  // 比较符制约
+  "eqeqeq": true,
+  "eqnull": true,
+
+  // 字符串的引号必须保持一致
+  "quotmark": true,
+
+  // 行末不能有多余空格
+  "trailing": true,
+
+  // 代码块必须用大括号包裹
+  "curly": true,
+
+  // 不限制是不是使用分号
+  "asi": true,
+
+  // 支持 `if (foo = bar) {}` 这样的写法
+  "boss": true,
+
+  // 支持 `options || (options = {})` 这样的写法
+  "expr": true,
+
+  // 同时支持 `hash['key']` 和 `hash.key`
+  "sub": true,
+
+  // 浏览器场景
+  // "browser": true,
+  // "devel": true,
+  // "nonstandard": true,
+
+  // Node.js 场景
+  // "node": true,
+  // "esnext": true,
+
+  // 直接忽略 `parseInt()` 相关的警告
+  // Refer to http://jslinterrors.com/missing-radix-parameter/
+  "-W065": true,
+  "globals": {         // additional predefined global variables
+    "module": true,
+    "require": true,
+  }
+}

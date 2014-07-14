@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <style>
+        #list { display: block; position: absolute; top: 100px; left: 10px; width: 200px; height: 100px; }
+        div { display: block; border: 1px solid black; height: 300px; width: 100%; }
+        #input { width: 80px; height: 200px; display: block; }
+    </style>
+</head>
+<body>
+    <div id="list" style="background: gray;">
+    </div>
+    <div id="wrapper">
+        <div id="d">
+            <input type="text" id="input" />
+        </div>
+    </div>
+    <script type="text/javascript">
+        var el = null;
+        function getEvent(el, e, type) {
+            e = e.changedTouches[0];
+            var event = document.createEvent('MouseEvents');
+            event.initMouseEvent(type, true, true, window, 1, e.screenX, e.screenY, e.clientX, e.clientY, false, false, false, false, 0, null);
+            event.forwardedTouchEvent = true;
+            return event;
+        }
+        var list = document.getElementById('list');
+        var input = document.getElementById('input');
+        list.addEventListener('touchstart', function (e) {
+            var firstTouch = e.touches[0]
+            el = firstTouch.target;
+            t1 = e.timeStamp;
+        })
+        list.addEventListener('touchend', function (e) {
+                        list.style.display = 'none';
+            e.preventDefault();
+            var event = getEvent(el, e, 'click');
+            el.dispatchEvent(event);
+        })
+
+        input.addEventListener('click', function(e){
+            alert(1)
+        })
+
+    </script>
+</body>
+</html>

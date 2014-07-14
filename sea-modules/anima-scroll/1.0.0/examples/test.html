@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<!--允许全屏-->
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="yes" name="apple-touch-fullscreen"/>
+<meta content="telephone=no,email=no" name="format-detection"/>
+<link rel="apple-touch-icon" href="favicon.png"/>
+<link rel="Shortcut Icon" href="favicon.png" type="image/x-icon" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<title>demo</title>
+<style>
+.outer {
+    height:300px;
+}
+.am-viewport{
+    background-color:#000; width:100%; height:100%; overflow:hidden; display: -webkit-box;
+}
+.am-viewport .active{
+    color:black; border:1px solid #ccc; box-sizing: border-box; width:50%; height:100%; -webkit-flex:1; overflow:hidden;
+}
+.am-viewport .inactive{
+    color:white; border:1px solid #ccc; box-sizing: border-box; width:50%; height:100%; -webkit-flex:1; overflow:hidden;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="outer">
+    <div class="am-viewport">
+        <div class="active"></div>
+        <div class="inactive"></div>
+    </div>
+</div>
+
+<script src="http://yuan.alipay.im/assets/seajs/seajs/2.2.0/sea.js"></script>
+
+<script type="text/javascript">
+seajs.use('../src/scroll', function(Scroll) {
+
+    (function () {
+        document.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+            return false;
+        }, false);
+
+        var viewportEl = document.querySelector('.am-viewport');
+        var activeEl = document.querySelector('.am-viewport .active');
+        var inactiveEl = document.querySelector('.am-viewport .inactive');
+        var html1 = [], html2 = [];
+
+
+        for (var i = 0; i < 50; i++) {
+            html1.push('<span style="height:25px;">' + i + '</span><br />');
+        }
+
+        for (var i = 0; i < 20; i++) {
+            html2.push('<div style="height:25px;"><input type="text" value="' + i + '" /></div>');
+        }
+        activeEl.innerHTML = '<section>' + html1.join('') + '</section>';
+        inactiveEl.innerHTML = '<section>' + 
+                '<div style="height:50px;text-align:center;line-height:50px;" id="boundaryTop">下拉刷新</div>' + 
+                html1.join('') + 
+                '<div style="border:1px solid red; margin:10px auto; width:60%; height:250px; overflow:hidden;">' + 
+                    '<section>' + html2.join('') + '</section>' + 
+                '</div>' + 
+                '<div style="height:50px;text-align:center;line-height:50px;" id="boundaryBottom">上拉加载更多</div>' + 
+            '</section>';
+
+        var scrollEl1 = activeEl.querySelector('section');
+        var scrollEl2 = inactiveEl.querySelector('section');
+        var scrollEl3 = scrollEl2.querySelector('section');
+
+        scrollEl1.style.backgroundColor = '#CCC';
+        scrollEl2.style.backgroundColor = '#999';
+        scrollEl3.style.backgroundColor = '#333';
+
+        window['scrollObj1'] = new Scroll(scrollEl1).init();
+        window['scrollObj2'] = new Scroll(scrollEl2, {
+            bounceOffset:{
+                top:50, 
+                bottom:50
+            }
+        }).init();
+        window['scrollObj3'] = scroll(scrollEl3, {
+            paddingTop: 20, 
+            paddingBottom: 50
+        }).init();
+
+        scrollEl2.addEventListener('scrollstart', function() {
+            console.log('scrollstart');
+        }, false);
+
+        scrollEl2.addEventListener('scrollend', function() {
+            console.log('scrollend');
+        }, false);
+
+        scrollEl2.addEventListener('pullup', function(e) {
+            console.log('pullup', e.boundaryOffset);
+            var boundaryBottom = scrollEl2.querySelector('#boundaryBottom');
+            if (e.boundaryOffset > 25 && boundaryBottom.innerHTML === '上拉加载更多') {
+                boundaryBottom.innerHTML = '松开即加载';
+            } else if (e.boundaryOffset <=25 && boundaryBottom.innerHTML === '松开即加载'){
+                boundaryBottom.innerHTML = '上拉加载更多'
+            }
+        }, false);
+
+        scrollEl2.addEventListener('pullupend', function() {
+            console.log('pullupend');
+            scrollObj2.disable();
+            setTimeout(function() {
+                scrollObj2.scrollTo(scrollObj2.getScrollHeight(), true);
+                scrollObj2.enable();
+            }, 2000);
+        }, false);
+
+        scrollEl2.addEventListener('pulldown', function(e) {
+            console.log('pulldown', e.boundaryOffset);
+            var boundaryTop = scrollEl2.querySelector('#boundaryTop');
+            if (e.boundaryOffset > 25 && boundaryTop.innerHTML === '下拉刷新') {
+                boundaryTop.innerHTML = '松开即刷新';
+            } else if (e.boundaryOffset <= 25 && boundaryTop.innerHTML === '松开即刷新'){
+                boundaryTop.innerHTML = '下拉刷新'
+            }
+        }, false);
+
+        scrollEl2.addEventListener('pulldownend', function() {
+            console.log('pulldownend');
+            scrollObj2.disable();
+            setTimeout(function() {
+                scrollObj2.scrollTo(0, true);
+                scrollObj2.enable();
+            }, 2000);
+        }, false);
+    })();
+
+});
+</script>
+
+</body>
+</html>

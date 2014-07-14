@@ -1,0 +1,22 @@
+{
+  "name": "animajs.org",
+  "version": "1.0.0",
+  "spm": {
+    "output": [
+      "src/js/index.js",
+      "src/css/index.css",
+      "src/html/index.html",
+      "src/model/footer.js"
+    ],
+    "dependencies": {
+      "anima-app": "1.0.0",
+      "anima-yocto": "1.0.1",
+      "anima-template": "1.0.0"
+    },
+    "engines": {
+      "seajs": "2.2.1"
+    },
+    "buildArgs": "--include standalone"
+  },
+  "amb": {}
+}

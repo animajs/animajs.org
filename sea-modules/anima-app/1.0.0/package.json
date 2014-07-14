@@ -1,0 +1,36 @@
+{
+  "name": "anima-app",
+  "version": "1.0.0",
+  "description": " is a free and open source HTML mobile framework to develop hybrid mobile apps or web apps",
+  "homepage": "http://gitlab.alibaba-inc.com/animajs/app",
+  "author": "sudong.yunsd@alibaba-inc.com",
+  "maintainers": [
+    "sudong.yunsd@alibaba-inc.com"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.alibaba-inc.com:animajs/app.git"
+  },
+  "bugs": {
+    "url": ""
+  },
+  "keywords": [],
+  "licenses": "MIT",
+  "spm": {
+    "main": "index.js",
+    "dependencies": {
+      "anima-yocto": "1.0.1",
+      "anima-underscore": "1.0.0",
+      "anima-scroll": "1.0.0",
+      "anima-fx": "1.0.0"
+    },
+    "devDependencies": {
+      "expect.js": "0.3.1"
+    },
+    "engines": {}
+  },
+  "devDependencies": {
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-watch": "~0.4.0"
+  }
+}

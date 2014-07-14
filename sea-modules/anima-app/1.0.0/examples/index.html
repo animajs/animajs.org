@@ -1,0 +1,361 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>app - Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="nico 0.5.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link type="image/x-icon" href="../static/css/favicon.ico" rel="icon">
+<link rel="stylesheet" type="text/css" href="https://a.alipayobjects.com/anima/dpl/1.1.0/amui.css" media="all">
+<script src="http://static.alipayobjects.com/??seajs/seajs/2.2.0/sea.js,seajs/seajs-text/1.0.2/seajs-text.js"></script>
+
+<script>
+  (function() {
+  seajs.config({
+    base: "../"
+  });
+
+  seajs.config({
+    alias: {"anima-scroll":"sea-modules/anima-scroll/1.0.0/index.js","anima-underscore":"sea-modules/anima-underscore/1.0.0/index.js","anima-yocto":"sea-modules/anima-yocto/1.0.1/index.js","expect.js":"sea-modules/expect.js/0.3.1/index.js","anima-fx":"sea-modules/anima-fx/1.0.0/index.js"}
+  });
+})();
+</script>
+<style type="text/css">
+html, body {
+    margin: 0;
+    padding: 0;
+    width:100%;
+    height:100%;
+}
+
+ul, ol {
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    -webkit-padding-before: 0;
+    -webkit-padding-after: 0;
+    -webkit-padding-start: 0;
+    -webkit-padding-end: 0;
+}
+
+body * {
+    -webkit-text-size-adjust:none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.navbar {
+    -webkit-box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    z-index: 99;
+    top: 0;
+    left: 0;
+}
+
+.toolbar {
+    position: relative;
+    z-index: 99;
+}
+
+.viewport {
+    width: 100%;
+    min-height: 100%;
+}
+
+.viewport > .navbar {
+    display: none;
+}
+
+.viewport > .content {
+  position: relative;
+    overflow: auto;
+    width: auto;
+    height: auto;
+}
+
+.viewport > .toolbar {
+    display: none;
+}
+
+.viewport > .content > .wrap,
+    .viewport > .content > .wrap > .active,
+        .viewport > .content > .wrap > .inactive {
+    width: 100%;
+    min-height: 100%;
+}
+
+.viewport > .content > .wrap > .active{
+    display: block;
+}
+
+.viewport > .content > .wrap > .inactive{
+    display: none;
+}
+
+.viewport > .content > .trans {
+    display: none;
+    background: transparent;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.viewport > .content > .trans > div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.viewport.enableNavbar > .navbar {
+    display: block;
+}
+
+.viewport.enableToolbar > .toolbar {
+    display: block;
+}
+
+.viewport.enableScroll,
+    .viewport.enableScroll > .content,
+    .viewport.enableScroll > .content > .wrap {
+    position: relative;
+    overflow-y: hidden;
+    height: 100%;
+}
+.viewport.enableScroll > .content > .wrap {
+    height: auto;
+}
+
+.viewport.enableTransition,
+    .viewport.enableTransition > .content,
+    .viewport.enableTransition > .content > .wrap {
+    position: relative;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* 自定义样式 */
+.viewport {
+  background: #fff;
+}
+.viewport > .content {
+  background: #ddd;
+}
+.viewport > .content > .wrap,
+.viewport > .content > .wrap > section {
+  background: #fafafa;
+}
+/* 低性能下转场loading样式 */
+.viewport > .content > .trans > div {
+  background-color: red;
+}
+
+</style>
+  </head>
+<body>
+
+
+<div class="viewport">
+    <header class="navbar"></header>
+    <section class="content"></section>
+    <footer class="toolbar"></footer>
+</div>
+
+
+
+<script>
+  seajs.use('index', function(App) {
+    console.log("XXX")
+
+
+    var MyUse = function() {
+      this.on("load", function(){
+        mask.show();
+      })
+      this.on("loadend", function(){
+        mask.hide();
+      })
+      this.helpers({
+        alert: function(message) {
+          this.log("ALERT! " + message);
+        }
+      });
+    };
+
+    var MyPlugin = function(params) {
+      console.log(params)
+      function appInit() {
+        // Do something when app fully initialized
+        console.log('appInit');
+      }
+      // Return object
+      return {
+        // Object contains hooks, all hooks are optional, don't use those you don't need
+        hooks: {
+          appInit: appInit,
+          pageReady: function (navbar, pageData) {
+              console.log('pageReady', pageData);
+          },
+          pageStartup: function (pageData) {
+              console.log('pageStartup', pageData);
+          },
+          pageShow: function (pageData) {
+              console.log('pageShow', pageData);
+          },
+          pageHide: function (pageData) {
+              console.log('pageHide', pageData);
+          },
+          pageTeardown: function (pageData) {
+              console.log('pageTeardown', pageData);
+          },
+          pageBeforeSwitch: function (pageData) {
+              console.log('pageBeforeSwitch', pageData);
+          },
+          pageAfterSwitch: function (pageData) {
+              console.log('pageBeforeSwitch', pageData);
+          },
+          loadStart: function (url) {
+              console.log('load', url);
+          },
+          loadEnd: function (url, config) {
+              console.log('load', url, config);
+          },
+          addRouter: function (route) {
+              console.log('addRouter', route);
+          }
+        }
+      };
+    };
+
+
+    var app = new App(".viewport", {
+        enableScroll: true,
+        enableNavbar: true,
+        enableMessageLog: false,
+        enableToolbar: true,
+        initPage: "!/p1/123",
+        plugins: {"Plugin1": MyPlugin}
+    }, function(){
+
+
+
+      this.use(MyUse);
+
+
+      this.router("123123", function(){
+        console.log(1);
+        this.redirect("!/p3/123", {
+          data: {
+            a: true,
+            b: true,
+            c: true,
+            d: true
+          }
+        })
+      })
+
+      var sss = this.router("!/p1/:id", function(){
+        // 插件的使用
+        this.alert("I'm home"); //=> logs: ALERT! I'm home
+
+        var _self = this;
+
+        this.renderPage({
+          title: "免责条款1",
+          toolbar: {
+            html: '<div class="am-flexbox am-flexbox-average"><div class="am-flexbox-item"><button type="button" class="am-button am-button-white">白色按钮</button></div><div class="am-flexbox-item"><button type="button" class="am-button am-button-blue">蓝色按钮</button></div></div>',
+            events: [
+              ["click", ".am-button-blue", function(){this.log("I'm blue!");_self.redirect("!/p2/123")}],
+              ["click", ".am-button-white", "_btnClick"],
+            ]
+          },
+          startup: function() {
+            var _self = this;
+            console.log("p1 startup")
+            _self.html('<div class="am-button-group"><a class="am-button-group-current" href="#!/p1/123">标签一</a><a href="#!/p2/123">标签二</a><a href="#!/p3/123">标签三</a></div><a data-spm-protocol="i" href="#!/a/123" class="am-button am-button-red">load</a>');
+          },
+          show: function(){
+            console.log("p1 show")
+          },
+          _btnClick: function(e){
+            console.log(e)
+            this.log("I'm white")
+          }
+        })
+      })
+
+      console.log(sss)
+
+      this.router("!/p2/:id", "namexxx", function(){
+
+        console.log(this.getParameters())
+
+        this.renderPage({
+          title: "免责条款2",
+          buttons: [
+            {
+              id: 'haha',
+              type: 'right',
+              text: 'TEST',
+              hide: false,
+              handler: function() {
+                this.log("click button")
+              }
+            }
+          ],
+          toolbar: {
+            html: '<a data-spm-protocol="i" href="#!/form" class="am-button am-button-red">关闭</a>',
+          },
+          startup: function() {
+            var _self = this;
+            console.log("p2 startup")
+            _self.html('<div class="am-button-group"><a href="#!/p1/123">标签一</a><a class="am-button-group-current" href="#!/p2/123">标签二</a><a href="#!/p3/123">标签三</a></div><div class="am-content">    <div class="am-list-header">组合</div>    <div class="am-list">        <div class="am-list-item am-list-item-form am-input-autoclear">            <div class="am-list-control">                <input type="text" placeholder="暗提示暗提示" value="">            </div>            <div class="am-list-clear"><i class="am-icon-clear"></i></div>        </div>        <div class="am-list-item am-list-item-form am-input-autoclear">            <div class="am-list-control">                <input type="text" placeholder="暗提示暗提示" value="">            </div>            <div class="am-list-clear"><i class="am-icon-clear"></i></div>            <div class="am-list-thumb"><i class="am-icon-camera"></i></div>        </div>    </div>    <div class="am-list-header">输入错误的情况</div>    <div class="am-list">        <div class="am-list-item am-list-item-form am-list-item-error am-input-autoclear">            <div class="am-list-control">                <input type="text" placeholder="暗提示暗提示" value="333">            </div>            <div class="am-list-clear"><i class="am-icon-clear"></i></div>        </div>    </div>    <div class="am-list-header">多行输入错误的情况</div>    <div class="am-list">        <div class="am-list-item am-list-item-form am-input-autoclear">            <div class="am-list-control">                <input type="text" placeholder="暗提示暗提示" value="">            </div>            <div class="am-list-clear"><i class="am-icon-clear"></i></div>        </div>        <div class="am-list-item am-list-item-form am-list-item-error am-input-autoclear">            <div class="am-list-control">                <input type="text" placeholder="暗提示暗提示" value="">            </div>            <div class="am-list-clear"><i class="am-icon-clear"></i></div>        </div>        <div class="am-list-item am-list-item-form am-input-autoclear">            <div class="am-list-control">                <input type="text" placeholder="暗提示暗提示" value="">            </div>            <div class="am-list-clear"><i class="am-icon-clear"></i></div>        </div>    </div>    <div class="am-list-header">全新登录</div>    <div class="am-list">        <div class="am-list-item am-list-item-form am-input-autoclear">            <div class="am-list-control">                <input type="text" placeholder="手机号/会员名" value="">            </div>            <div class="am-list-clear"><i class="am-icon-clear"></i></div>        </div>        <div class="am-list-item am-list-item-form am-input-autoclear">            <div class="am-list-control">                <input type="text" placeholder="淘宝登录密码" value="">            </div>            <div class="am-list-clear"><i class="am-icon-clear"></i></div>        </div>    </div>    <div class="am-list-footer am-ft-right"><a href="#">忘记密码？</a></div>    <div class="am-list-header">有历史登录过非手机登录域账户</div>    <div class="am-list">        <div class="am-list-item am-input-autoclear">            <div class="am-list-thumb"><i class="am-icon-lock"></i></div>            <div class="am-list-control">                <input type="text" placeholder="请输入登录密码" value="">            </div>            <div class="am-list-clear"><i class="am-icon-clear"></i></div>        </div>        <div class="am-list-item am-list-item-form">            <div class="am-list-control">                我是文字我是文字我是文字我是文字我是文字我是文字我是我是文字我是字我是文字我是文字我是文字我是文字            </div>        </div>    </div>    <div class="am-list-header">非常规表单（label固定宽度不对齐）</div>    <div class="am-list">        <div class="am-list-item am-list-item-form am-input-autoclear">            <div class="am-list-label">优惠券名称:</div>            <div class="am-list-control">                <input type="text" placeholder="最多5个字" value="">                <input type="hidden" placeholder="" value="">            </div>            <div class="am-list-clear"><i class="am-icon-clear"></i></div>        </div>        <div class="am-list-item am-list-item-form am-input-autoclear">            <div class="am-list-label">优惠券密码:</div>            <div class="am-list-control">                <input type="text" placeholder="" value="">                <input type="hidden" placeholder="" value="">            </div>            <div class="am-list-clear"><i class="am-icon-clear"></i></div>        </div>        <div class="am-list-item am-list-item-form am-input-autoclear">            <div class="am-list-label">优惠券有效期:</div>            <div class="am-list-control">永久可用</div>            <div class="am-list-clear"><i class="am-icon-clear"></i></div>        </div>    </div>    <div class="am-list-header">非常规表单（label固定宽度对齐）</div>    <div class="am-list am-list-6lb">        <div class="am-list-item am-list-item-form am-input-autoclear">            <div class="am-list-label">优惠券名称:</div>            <div class="am-list-control">                <input type="text" placeholder="" value="">                <input type="hidden" placeholder="" value="">            </div>            <div class="am-list-clear"><i class="am-icon-clear"></i></div>        </div>        <div class="am-list-item am-list-item-form am-input-autoclear">            <div class="am-list-label">优惠券密码:</div>            <div class="am-list-control">                <input type="text" placeholder="" value="">                <input type="hidden" placeholder="" value="">            </div>            <div class="am-list-clear"><i class="am-icon-clear"></i></div>        </div>        <div class="am-list-item am-list-item-form am-input-autoclear">            <div class="am-list-label">优惠券有效期:</div>            <div class="am-list-control">永久可用</div>            <div class="am-list-clear"><i class="am-icon-clear"></i></div>        </div>    </div></div>');
+          },
+          show: function(){
+            console.log("p2 show")
+          }
+        })
+      })
+
+      this.router("!/p3/:id", function(){
+        console.log(this.getParameters())
+        this.renderPage({
+          title: "免责条款3",
+          startup: function() {
+            var _self = this;
+            console.log("p3 startup")
+            _self.html('<div class="am-button-group"><a href="#!/p1/123">标签一</a><a href="#!/p2/123">标签二</a><a class="am-button-group-current" href="#!/p3/123">标签三</a></div><div class="am-content">    <div class="am-list-header">图标搭配文字</div>    <div class="am-list">        <div class="am-list-item">            <div class="am-list-thumb">                <img src="http://img0.bdstatic.com/img/image/daren/ximeng2.jpg" width="32" height="32" alt=""/>            </div>            <div class="am-list-content">图标左，内容右</div>        </div>        <div class="am-list-item">            <div class="am-list-content am-ft-ellipsis">内容左，图标右（同时内容超长截断）</div>            <div class="am-list-thumb">                <img src="http://img0.bdstatic.com/img/image/daren/ximeng2.jpg" width="32" height="32" alt=""/>            </div>        </div>        <div class="am-list-item">            <div class="am-list-thumb">                <img src="http://img0.bdstatic.com/img/image/daren/ximeng2.jpg" width="32" height="32" alt=""/>            </div>            <div class="am-list-content">                <div class="am-list-title">右侧有附加信息</div>            </div>            <div class="am-list-extra">8.80元</div>        </div>        <a href="#" class="am-list-item">            <div class="am-list-thumb">                <img src="http://img0.bdstatic.com/img/image/daren/ximeng2.jpg" width="32" height="32" alt=""/>            </div>            <div class="am-list-content">                <div class="am-list-title am-ft-ellipsis">详细信息链接引导</div>            </div>            <div class="am-list-extra am-ft-ellipsis">8.80元</div>            <div class="am-list-arrow"><span class="am-icon-arrow-horizontal"></span></div>        </a>        <a href="#" class="am-list-item">            <div class="am-list-thumb">                <img src="http://img0.bdstatic.com/img/image/daren/ximeng2.jpg" width="32" height="32" alt=""/>            </div>            <div class="am-list-content">                <div class="am-list-title am-ft-ellipsis">重要信息链接引导</div>            </div>            <div class="am-list-extra am-list-key am-ft-ellipsis">重要信息展示</div>            <div class="am-list-arrow"><span class="am-icon-arrow-horizontal"></span></div>        </a>        <div class="am-list-item">            <div class="am-list-thumb am-list-thumb-radius">                <img src="http://img0.bdstatic.com/img/image/daren/ximeng2.jpg" width="46" height="46" alt=""/>            </div>            <div class="am-list-content">                <div class="am-list-title am-ft-ellipsis">主信息（图标自定义大小）</div>                <div class="am-list-brief am-ft-ellipsis">辅助信息</div>            </div>        </div>    </div></div>');
+          },
+          show: function(){
+            console.log("p3 show")
+          }
+        })
+      })
+
+      this.router("!/a/:id", function(){
+        this.load("/examples/load.js")
+      })
+
+    })
+
+    console.log(app)
+
+  });
+</script>
+</body>
+</html>

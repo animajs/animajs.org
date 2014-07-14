@@ -1,0 +1,37 @@
+{
+    "name": "anima-template",
+    "version": "1.0.0",
+    "description": "Anima template",
+    "keywords": [],
+    "homepage": "http://animajs.org/template/",
+    "author": "yuanfei.gyf",
+    "maintainers": [
+        "yuanfei.gyf"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git://gitlab.alibaba-inc.com/animajs/template.git"
+    },
+    "bugs": {
+        "url": "git://gitlab.alibaba-inc.com/animajs/template.git/issues"
+    },
+    "licenses": "MIT",
+    "spm": {
+        "main": "index.js",
+        "dependencies": {},
+        "devDependencies": {
+            "expect.js": "0.3.1"
+        },
+        "engines": {
+            "seajs": "2.2.1"
+        },
+        "tests": "tests/*.js"
+    },
+    "dependencies": {
+        "nopt": "1.0.10",
+        "mkdirp": "0.3.0"
+    },
+    "bin": {
+        "atpl": "./bin/aTpl.js"
+    }
+}

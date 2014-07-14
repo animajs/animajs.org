@@ -1,0 +1,31 @@
+{
+  "name": "anima-underscore",
+  "version": "1.0.0",
+  "description": "underscore for anima",
+  "keywords": [],
+  "homepage": "http://gitlab.alibaba-inc.com/animajs/underscore",
+  "author": "sudong.yunsd@alibaba-inc.com",
+  "maintainers": [
+    "sudong.yunsd@alibaba-inc.com"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.alibaba-inc.com:animajs/underscore.git"
+  },
+  "bugs": {
+    "url": "http://gitlab.alibaba-inc.com/animajs/underscore/issues"
+  },
+  "licenses": "MIT",
+  "spm": {
+    "main": "index.js",
+    "dependencies": {
+    },
+    "devDependencies": {
+      "expect.js": "0.3.1"
+    },
+    "engines": {
+      "seajs": "2.2.1"
+    },
+    "tests": "tests/*.js"
+  }
+}

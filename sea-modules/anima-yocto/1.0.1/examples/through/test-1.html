@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width"/>
+    <link href="http://i03.i.aliimg.com/wimg/mobile/single/apple_touch_icon.png" rel="apple-touch-icon-precomposed"/>
+    <link href="http://style.aliunicorn.com/css/6v/run/ws-mobile/core/??core-ws.css?t=0_22eb0d03c" rel="stylesheet"
+          type="text/css" media="all"/>
+    <script type="text/javascript"
+            src="http://style.aliunicorn.com/js/6v/atom/??atom-ws.js?t=6e7ef7c9_83896df61"></script>
+    <style>
+        #div-zindex-1, #div-zindex-2 {width: 100%; height: 50px;position: absolute;z-index: 1;top: 0; left: 0;}
+        #div-zindex-1 {background-color: blue; color: #fff;}
+        #div-zindex-1 a{color:#fff;display: block;line-height: 50px;}
+        #div-zindex-2 {background-color: red;color: #fff; width: 90%; height: 70px;}
+        .console { width: 100%; min-height: 100px;margin: 100px auto 0;border-top: 1px solid #ccc;}
+    </style>
+</head>
+<body>
+<div id="div-zindex-1"><a href="http://m.taobao.com">Blue Div</a></div>
+<div id="div-zindex-2">Red Div</div>
+<div class="console"></div>
+<script>
+    seajs.use(['$', 'js/6v/lib/gallery/hammer/hammer.js'], function($, Hammer) {
+        function log(text, color) {
+            $('.console').append('<p style="color: '+color+'">'+text+'</p>');
+        }
+        Hammer($('#div-zindex-2')[0]).on('tap', function(e) {
+            $('#div-zindex-2').hide();
+        });
+
+        $('#div-zindex-2').on('touchend', function(e) {
+            e.preventDefault();
+        });
+
+        $('#div-zindex-1').on('touchstart touchend click', function(e) {
+            log('Blue Div Trigger:' + e.type, 'blue');
+        });
+        $('#div-zindex-2').on('touchstart touchend click', function(e) {
+            log('Red Div Trigger:' + e.type, 'red');
+        });
+    })
+</script>
+</body>
+</html>

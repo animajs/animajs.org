@@ -1,0 +1,25 @@
+{
+  "name": "anima-fx",
+  "version": "1.0.0",
+  "description": "fx, a animation module from zepto",
+  "homepage": "http://gitlab.alibaba-inc.com/animajs/fx",
+  "author": "wanyan.wz@taobao.com",
+  "maintainers": [
+    "wanyan.wz@taobao.com"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.alibaba-inc.com:animajs/fx.git"
+  },
+  "bugs": {
+    "url": ""
+  },
+  "keywords": [],
+  "licenses": "MIT",
+  "spm": {
+    "main": "index.js",
+    "dependencies": {
+      "anima-yocto": "1.0.1"
+    }
+  }
+}

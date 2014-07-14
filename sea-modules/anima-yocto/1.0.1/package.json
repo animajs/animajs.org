@@ -1,0 +1,22 @@
+{
+  "name": "anima-yocto",
+  "version": "1.0.1",
+  "description": "Yocto is a anima's customized zepto core, rebuild and simplify some modules from the core of zepto",
+  "homepage": "http://gitlab.alibaba-inc.com/animajs/yocto",
+  "author": "wanyan.wz@taobao.com",
+  "maintainers": [
+    "wanyan.wz@taobao.com"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://gitlab.alibaba-inc.com/animajs/yocto.git"
+  },
+  "bugs": {
+    "url": ""
+  },
+  "keywords": [],
+  "licenses": "MIT",
+  "spm": {
+    "main": "index.js"
+  }
+}

@@ -1,0 +1,70 @@
+/* animation sets */
+.pt-page-moveToTop {
+  -webkit-animation: moveToTop .6s ease both;
+  -moz-animation: moveToTop .6s ease both;
+  animation: moveToTop .6s ease both;
+}
+
+.pt-page-moveToBottom {
+  -webkit-animation: moveToBottom .6s ease both;
+  -moz-animation: moveToBottom .6s ease both;
+  animation: moveToBottom .6s ease both;
+}
+
+/* move from / to  */
+
+@-webkit-keyframes moveToTop {
+  to { -webkit-transform: translateY(-100%); }
+}
+@-moz-keyframes moveToTop {
+  to { -moz-transform: translateY(-100%); }
+}
+@keyframes moveToTop {
+  to { transform: translateY(-100%); }
+}
+
+@-webkit-keyframes moveToBottom {
+  to { -webkit-transform: translateY(100%); }
+}
+@-moz-keyframes moveToBottom {
+  to { -moz-transform: translateY(100%); }
+}
+@keyframes moveToBottom {
+  to { transform: translateY(100%); }
+}
+
+/* scale and fade */
+
+.pt-page-scaleDown {
+  -webkit-animation: scaleDown .7s ease both;
+  -moz-animation: scaleDown .7s ease both;
+  animation: scaleDown .7s ease both;
+}
+
+.pt-page-scaleUp {
+  -webkit-animation: scaleUp .7s ease both;
+  -moz-animation: scaleUp .7s ease both;
+  animation: scaleUp .7s ease both;
+}
+
+/* scale and fade */
+
+@-webkit-keyframes scaleDown {
+  to { opacity: 0; -webkit-transform: scale(.8); }
+}
+@-moz-keyframes scaleDown {
+  to { opacity: 0; -moz-transform: scale(.8); }
+}
+@keyframes scaleDown {
+  to { opacity: 0; transform: scale(.8); }
+}
+
+@-webkit-keyframes scaleUp {
+  from { opacity: 0; -webkit-transform: scale(.8); }
+}
+@-moz-keyframes scaleUp {
+  from { opacity: 0; -moz-transform: scale(.8); }
+}
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(.8); }
+}
