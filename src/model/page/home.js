@@ -10,7 +10,7 @@ var tpl = '' +
 '            <div class="silider-box">' +
 '               <div class="container">' +
 '                  <div class="container-box">' +
-'                     <img style="margin:20px auto 0;display:block;" src="./src/img/a.png"/>' +
+'                     <img style="margin:20px auto 0;display:block;" src="./src/img/A.png"/>' +
 '                     <div><img style="margin:20px auto 0;display:block;" src="./src/img/bt.png"/></div>' +
 '                  </div>' +
 '               </div>' +
