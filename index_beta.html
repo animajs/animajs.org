@@ -1,32 +1,21 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="ie ie8"> <![endif]-->
-<!--[if IE 9]>	<html class="ie ie9"> <![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
 <!--[if gt IE 9]><!--><html> <!--<![endif]-->
    <head>
-      <link rel="stylesheet" href="./src/css/index.css" />
-      <link rel="stylesheet" type="text/css" href="https://a.alipayobjects.com/anima/dpl/1.1.0/amui.css" media="all">
       <meta charset="utf-8">
-      <title>Pixma Responsive HTML5/CSS3 Template | FIFO THEMES</title>
-      <meta name="description" content="Pixma Responsive HTML5/CSS3 Template from FIFOTHEMES.COM">
-      <meta name="author" content="FIFOTHEMES.COM">
+      <title>animajs for mobile</title>
+      <meta name="author" content="alipay.com">
       <!-- Mobile Metas -->
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <!-- Library CSS -->
-      <link rel="stylesheet" href="./src/css/bootstrap.css">
-      <!-- Theme CSS -->
-      <link rel="stylesheet" href="./src/css/bootstrap-theme.css">
-      <link rel="stylesheet" href="./src/css/fast-theme.css">
-      <link rel="stylesheet" href="./src/css/component.css">
-      <link rel="stylesheet" href="./src/css/animations.css">
-      <link rel="stylesheet" type="text/css" href="./src/css/markdown.css">
-      <!-- lib -->
-      <link href="./src/css/lib/jquery.bxslider.css" rel="stylesheet" />
-      <!-- Favicons -->
+      <!-- Favicons | 移动终端上的icon 介个嘛，回头补上~
       <link rel="shortcut icon" href="./src/img/ico/favicon.ico">
       <link rel="apple-touch-icon" href="./src/img/ico/apple-touch-icon.png">
       <link rel="apple-touch-icon" sizes="72x72" href="./src/img/ico/apple-touch-icon-72.png">
       <link rel="apple-touch-icon" sizes="114x114" href="./src/img/ico/apple-touch-icon-114.png">
       <link rel="apple-touch-icon" sizes="144x144" href="./src/img/ico/apple-touch-icon-144.png">
+      -->
+      <!-- Library CSS -->
       <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
       <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -34,52 +23,55 @@
       <!--[if IE]>
       <link rel="stylesheet" href="./src/css/ie.css">
       <![endif]-->
-      <!-- The Scripts Library-->
+      <!-- CSS -->
+      <link href="http://g.assets.daily.taobao.net/fi/saiya/1.0.2/src/css/??bootstrap.css,bootstrap-theme.css,lib/jquery.bxslider.css,component.css,animations.css,markdown.css,fast-theme.css" rel="stylesheet" />
       <script src="http://static.alipayobjects.com/seajs/seajs/2.2.0/sea.js"></script>
- 
-      <script src="./src/js/jquery.js"></script>
-      <script src="./src/js/bootstrap.js"></script>
-      <!-- The headroom -->
-      <script src="./src/js/lib/headroom.min.js"></script>
+      <!-- The config.js -->
       <script>
-          seajs.config({
-           base: "./",
-
-           alias: {
+        seajs.config({
+         base: "http://g.assets.daily.taobao.net/fi/saiya/1.0.2/",
+         alias: {
+            /**
+             * animajs
+             */
             "anima-scroll": "sea-modules/anima-scroll/1.0.0/index.js",
             "anima-underscore": "sea-modules/anima-underscore/1.0.0/index.js",
             "anima-yocto": "sea-modules/anima-yocto/1.0.1/index.js",
             "anima-app": "sea-modules/anima-app/1.0.0/index.js",
             "anima-fx": "sea-modules/anima-fx/1.0.0/index.js",
-            "anima-template": "sea-modules/anima-template/1.0.0/index.js"}
-          });
+            "anima-template": "sea-modules/anima-template/1.0.0/index.js",
+            /**
+             * page-widgets
+             */
+            "jquery": "src/js/jquery.min.js",
+            "jquery-bxslider": "src/js/lib/jquery.bxslider.min.js",
+            "doc-jump": "src/js/doc-jump.js",
+            "pagetransitions": "src/js/pagetransitions.js",
+            "modernizr": "src/js/modernizr.custom.js",
+            "custom": "src/js/custom.js",
+            "markdown": "src/js/markdown.js",
+            /**
+             * config
+             */
+            "config": "src/js/config.js",
+            /**
+             * pages
+             */
+            "index": "src/model/page/index.js",
+            "start": "src/model/page/start.js"
+          }
+        });
+        seajs.use('config');
       </script>
    </head>
    <body class="home">
-        <iframe src="#" width="100%" height="100%" style="padding:0;marigin:0;border:0;display:none;" name="anima-doc" id="iframe"></iframe>
-        <div id="pt-main" class="pt-perspective" style="diplay: block;">
-          <!--home ****page1*** -->
-          <script src="./src/model/page/home.js"></script>
-          <!-- start.js ***page2*** -->
-          <div class="pt-page pt-page2" id="preview">
-            <div class="container"></div>
-          </div>
-          <!-- widge.js ***page3*** --> 
-          <div class="pt-page pt-page3">
-            <div style="height: 8px; background-color: #89c997; margin-bottom: 12px;">
-            </div>
-            <div class="container">
-              <div class="row J_WidgetList"></div>
-            </div>
-          </div>
+      <div id="pt-main" class="pt-perspective">
+        <div class="pt-page pt-page1" id="J_IndexPage"></div>
+        <div class="pt-page pt-page2" id="J_StartPage"></div>
+        <div class="pt-page pt-page3" id="J_WidgetPage"></div>
+        <div class="pt-page pt-page4 iterateEffects" id="J_IframePage" data-id="3">
+          <iframe style="padding:0;margin:0;border:0;display: block;" width="100%" height="100%" name="anima-doc" id="iframe"></iframe>
         </div>
-      <script src="./src/js/index.js"></script>
-      <script src="./src/js/custom.js"></script>
-      <script src="./src/js/lib/jquery.bxslider.min.js"></script>
-      <script src="./src/js/modernizr.custom.js"></script>
-      <script src="./src/js/pagetransitions.js"></script>
-      <script src="./src/js/doc-jump.js"></script>
-      <script src="./src/js/markdown.js"></script>
-      <script src='./src/model/page/start.js'></script>
+      </div>
    </body>
 </html>
